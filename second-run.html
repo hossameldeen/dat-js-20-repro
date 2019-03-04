@@ -1,0 +1,24 @@
+<title>Check Chrome Console</title>
+<script type="text/javascript" src="https://bundle.run/dat-js@7.1.0"></script>
+<script type="text/javascript" src="https://bundle.run/random-access-idb@1.2.1"></script>
+
+<script>
+var Dat = datJs
+var db = randomAccessIdb('dats')
+
+var dat = new Dat()
+
+var repo = dat.get(localStorage.getItem('My_Repo'), {
+  db: db
+})
+
+console.log('Will wait for repo.ready')
+
+repo.ready(() => {
+  console.log('Repo ready. Will read the file')
+  repo.archive.readFile('/example.txt', 'utf-8', (err, data) => {
+    console.log(`It's still there: ${data}`)
+    dat.close(() => console.log('closed'))
+  })
+})
+</script>

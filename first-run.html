@@ -1,0 +1,23 @@
+<title>Check Chrome Console</title>
+<script type="text/javascript" src="https://bundle.run/dat-js@7.1.0"></script>
+<script type="text/javascript" src="https://bundle.run/random-access-idb@1.2.1"></script>
+
+<script>
+var Dat = datJs
+var db = randomAccessIdb('dats')
+
+var dat = new Dat()
+
+var repo = dat.create({
+  db: db
+})
+
+console.log('Will write the file')
+
+repo.archive.writeFile('/example.txt', 'Hello World!', () => {
+  // Save it for later
+  localStorage.setItem('My_Repo', repo.url)
+  console.log('Wrote the file. Closing...')
+  repo.close(() => console.log('Closed. Now, run second-run to read'))
+})
+</script>
