@@ -1,10 +1,13 @@
 <title>Check Chrome Console</title>
 <script type="text/javascript" src="https://bundle.run/dat-js@7.1.0"></script>
-<script type="text/javascript" src="https://bundle.run/random-access-idb@1.2.1"></script>
+<script type="text/javascript" src="https://bundle.run/random-access-web@1.1.0"></script>
 
 <script>
+// The async wrapper is to be able to use `await`
+(async () => {
+
 var Dat = datJs
-var db = randomAccessIdb('dats')
+var db = await randomAccessWeb.init()
 
 var dat = new Dat()
 
@@ -20,4 +23,6 @@ repo.archive.writeFile('/example.txt', 'Hello World!', () => {
   console.log('Wrote the file. Closing...')
   repo.close(() => console.log('Closed. Now, run second-run to read'))
 })
+
+})()
 </script>
