@@ -2,6 +2,10 @@
 
 A reproduction for [dat-js/#20](//github.com/datproject/dat-js/issues/20).
 
+## Archive notice
+
+This repo has been archived. The issue has been solved.
+
 ## Steps
 - `yarn install`
 
